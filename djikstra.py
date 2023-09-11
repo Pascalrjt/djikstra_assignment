@@ -17,12 +17,12 @@ def dijkstra(graph, start, end):
         # If we've reached the end node, reconstruct and return the path
         if current_node == end:
             path = []
-            cost = []
+            total_cost = 0
             while current_node:
                 path.append(current_node)
-                cost.append(distances[current_node])
+                total_cost += distances[current_node]
                 current_node = previous.get(current_node)
-            return distances[end], list(reversed(path)), list(reversed(cost))
+            return total_cost, list(reversed(path))
         
         # If we've already processed this node, skip it
         if current_distance > distances[current_node]:
@@ -64,9 +64,8 @@ if __name__ == "__main__":
     result = dijkstra(graph, start_node, end_node)
     
     if result:
-        shortest_distance, shortest_path, node_costs = result
-        print(f'Shortest distance from {start_node} to {end_node} is {shortest_distance}')
+        total_cost, shortest_path = result
+        print(f'Total cost from {start_node} to {end_node}: {total_cost}')
         print(f'Shortest path: {" -> ".join(shortest_path)}')
-        print(f'Cost of nodes traversed: {node_costs}')
     else:
         print(f'No path from {start_node} to {end_node} found.')
