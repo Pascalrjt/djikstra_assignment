@@ -60,7 +60,7 @@ if __name__ == "__main__":
     }
     
     start_node = 'A'
-    end_node = 'D'
+    end_node = 'M'
     
     result = dijkstra(graph, start_node, end_node)
     
