@@ -17,12 +17,12 @@ def dijkstra(graph, start, end):
         # If we've reached the end node, reconstruct and return the path
         if current_node == end:
             path = []
-            cost = []
+            total_cost = 0
             while current_node:
                 path.append(current_node)
-                cost.append(distances[current_node])
+                total_cost += distances[current_node]
                 current_node = previous.get(current_node)
-            return distances[end], list(reversed(path)), list(reversed(cost))
+            return total_cost, list(reversed(path))
         
         # If we've already processed this node, skip it
         if current_distance > distances[current_node]:
@@ -43,14 +43,15 @@ def dijkstra(graph, start, end):
 # Example usage:
 if __name__ == "__main__":
     # Define the graph as an adjacency dictionary
+
     graph = {
             'A': {'B': 1, 'C': 3, 'D': 5},
             'B': {'A': 1, 'E': 7, 'F': 4},
             'C': {'A': 3, 'F': 1},
             'D': {'A': 5, 'G': 2},
-            'E': {'B': 7, 'H': 6},
+            'E': {'B': 7, ‘G’: 1,'H': 6},
             'F': {'B': 4, 'C': 1, 'G': 2},
-            'G': {'D': 2, 'F': 2, 'J': 4, 'L': 1},
+            'G': {'D': 2, ‘E’: 1, 'F': 2, 'J': 4, 'L': 1},
             'H': {'E': 6, 'I': 2, 'M': 4},
             'I': {'H': 2, 'J': 1, 'K': 1, 'M': 7},
             'J': {'F': 6, 'G': 4, 'I': 1},
@@ -60,14 +61,13 @@ if __name__ == "__main__":
     }
     
     start_node = 'A'
-    end_node = 'M'
+    end_node = 'D'
     
     result = dijkstra(graph, start_node, end_node)
     
     if result:
-        shortest_distance, shortest_path, node_costs = result
-        print(f'Shortest distance from {start_node} to {end_node} is {shortest_distance}')
+        total_cost, shortest_path = result
+        print(f'Total cost from {start_node} to {end_node}: {total_cost}')
         print(f'Shortest path: {" -> ".join(shortest_path)}')
-        print(f'Cost of nodes traversed: {node_costs}')
     else:
         print(f'No path from {start_node} to {end_node} found.')
