@@ -68,6 +68,6 @@ if __name__ == "__main__":
         shortest_distance, shortest_path, node_costs = result
         print(f'Shortest distance from {start_node} to {end_node} is {shortest_distance}')
         print(f'Shortest path: {" -> ".join(shortest_path)}')
-        print(f'Cost of nodes traversed: {node_costs}')
+        print(f'Total cost after each nodes are traversed: {node_costs}')
     else:
         print(f'No path from {start_node} to {end_node} found.')
