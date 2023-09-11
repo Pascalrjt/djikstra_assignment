@@ -1,6 +1,6 @@
 # Graph Theory Assignment
 
-Output:
+Output:<br>
 Shortest distance from A to M is 10 <br>
 Shortest path: A -> C -> F -> G -> L -> M <br>
 Total cost after each nodes are traversed: [0, 3, 4, 6, 7, 10] <br>
